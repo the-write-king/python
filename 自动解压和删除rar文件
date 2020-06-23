@@ -1,1 +1,29 @@
 
+import os
+import shutil
+def scan_file():
+    file=os.listdir('E:\\11')#该函数查找绝对路径下的文件夹中的文件
+    for f in file:
+        if f.endswith('.zip'):
+            return f
+
+def unzip_it(f):
+    folder_name=f.split('.')[0]#split函数可以将字符串而分开
+    print(111)
+    target_path='E:\\11\\'+folder_name+'A'
+    print(target_path)
+    file=os.listdir('E:\\11')
+   
+    if (folder_name+'A') not in file:
+        os.makedirs(target_path)
+    print(222)
+    shutil.unpack_archive('E:\\11\\'+f,target_path)#第一个参数为需要进行解压的文件，第二个参数为解压后的解压文件夹
+    print(333)
+def delete(f):
+    os.remove('E:\\11\\'+f)#注意这里的路径要是全路径
+
+while True:
+    zip_file=scan_file()
+    if zip_file:
+        unzip_it(zip_file)
+        delete(zip_file)
